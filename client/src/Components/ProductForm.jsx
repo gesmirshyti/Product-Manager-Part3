@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
-const ProductForm = () => {
+const ProductForm = (props) => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState();
   const [description, setDescription] = useState("");
-  const {product, setProduct}= props;
+  const { products, setProducts } = props;
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ const ProductForm = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data);
-        setProduct([...product, res.data])
+        setProducts([...products, res.data]);
       })
       .catch((err) => console.log(err));
   };
