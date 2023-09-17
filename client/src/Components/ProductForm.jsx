@@ -5,6 +5,7 @@ const ProductForm = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState();
   const [description, setDescription] = useState("");
+  const {product, setProduct}= props;
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const ProductForm = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data);
+        setProduct([...product, res.data])
       })
       .catch((err) => console.log(err));
   };
@@ -30,7 +32,7 @@ const ProductForm = () => {
         <input type="text" onChange={(e) => setTitle(e.target.value)} />
       </p>
       <p>
-        <label>Age</label>
+        <label>Price</label>
         <br />
         <input type="number" onChange={(e) => setPrice(e.target.value)} />
       </p>
